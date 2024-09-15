@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bidit Acharya - Tyoyo Education Consultancy</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: url('images/bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background-color: rgba(16, 42, 79, 0.8); /* Custom dark blue */
+            padding: 10px 0;
+            color: white;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #102a4f; /* Custom border color */
+        }
+
+        .container {
+            text-align: center;
+            padding: 80px 20px 20px;
+        }
+
+        .personal-info {
+            font-size: 1.5em;
+            margin: 20px 0;
+        }
+
+        .buttons-section {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .buttons-section button {
+            padding: 15px 25px;
+            font-size: 1em;
+            color: white;
+            background-color: #102a4f;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            flex: 0 0 calc(50% - 20px);
+        }
+
+        .buttons-section button:hover {
+            background-color: #1c466a;
+            transform: scale(1.1);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .dropdown button {
+            padding: 15px 20px;
+            font-size: 1em;
+            color: white;
+            background-color: #102a4f;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            width: 90%;
+            max-width: 300px;
+            text-align: center;
+            transition: background-color 0.5s, transform 0.5s;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #102a4f;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            z-index: 1;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .dropdown-content button {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            background: none;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background-color: rgba(16, 42, 79, 0.8); /* Custom dark blue */
+        }
+
+        @media (max-width: 768px) {
+            .buttons-section button {
+                font-size: 0.9em;
+                padding: 10px 15px;
+                flex: 0 0 100%;
+            }
+        }
+
+        /* Carousel styles */
+        .carousel {
+            width: 90%;
+            max-width: 100%;
+            height: 500px; /* Fixed height */
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 10px;
+            border: 3px solid #102a4f; /* Border color */
+        }
+
+        .carousel img {
+            height: 100%; /* Match the container's height */
+            width: auto; /* Adjust width based on aspect ratio */
+            display: block;
+            border-radius: 10px;
+            margin: 0 auto; /* Center the image horizontally */
+        }
+
+        .popup {
+            position: fixed;
+            display: none;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+        }
+
+        .popup-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 90%;
+            animation: fadeIn 0.5s ease-in-out;
+            color: #333;
+            font-size: 1.2em;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 1.5em;
+            color: #e74c3c;
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        .close-btn:hover {
+            transform: rotate(90deg);
+            color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h1>Bidit Acharya - Managing Director</h1>
+        <h2>Tyoyo Education Consultancy</h2>
+        <h3>Devkota Sadak, Kathmandu, Nepal</h3>
+    </div>
+
+    <div class="container">
+        <!-- Personal Info -->
+        <div class="personal-info">
+            <p>Welcome to Tyoyo Education Consultancy, where we help you achieve your academic dreams.</p>
+        </div>
+
+        <!-- Image Carousel -->
+        <div class="carousel" id="carousel">
+            <img src="images/1.PNG" alt="Photo 1">
+            <img src="images/2.PNG" alt="Photo 2">
+            <img src="images/3.PNG" alt="Photo 3">
+            <img src="images/4.PNG" alt="Photo 4">
+            <img src="images/5.PNG" alt="Photo 5">
+            <img src="images/6.PNG" alt="Photo 5">
+        </div>
+
+        <!-- Dropdown for QR Codes -->
+        <div class="dropdown">
+            <button>QR Codes</button>
+            <div class="dropdown-content">
+                <button onclick="showPopup('images/whatsapp.png')">WhatsApp</button>
+                <button onclick="showPopup('images/viber.png')">Viber</button>
+                <button onclick="showPopup('images/office_call.png')">Office Call</button>
+                <button onclick="showPopup('images/facebook.png')">Facebook</button>
+                <button onclick="showPopup('images/instagram.png')">Instagram</button>
+                <button onclick="showPopup('images/linkedin.png')">LinkedIn</button>
+                <button onclick="showPopup('images/email.png')">Email</button>
+                <button onclick="showPopup('images/vcard.png')">Download vCard</button>
+            </div>
+        </div>
+
+        <!-- Buttons Section -->
+        <div class="buttons-section">
+            <button onclick="window.open('tel:+9779851213933', '_self')">Call (Mobile)</button>
+            <button onclick="window.open('tel:+97715911355', '_self')">Call (Office)</button>
+            <button onclick="window.open('https://wa.me/9779851213933', '_blank')">WhatsApp</button>
+            <button onclick="window.open('https://www.facebook.com/tyoyoeducation', '_blank')">Facebook</button>
+            <button onclick="window.open('https://www.instagram.com/tyoyoeducation/', '_blank')">Instagram</button>
+            <button onclick="window.open('mailto:bidit@tyoyoeducation.com', '_self')">Email</button>
+            <button onclick="window.open('https://www.linkedin.com/company/tyoyoeducation/', '_blank')">LinkedIn</button>
+            <button onclick="downloadVCard()">Save my number</button>
+        </div>
+
+        <!-- Popup for QR Codes -->
+        <div class="popup" id="generic-popup">
+            <div class="popup-content">
+                <span class="close-btn" onclick="hidePopup('generic-popup')">&times;</span>
+                <img id="popup-image" src="" alt="QR Code" style="max-width: 300px;">
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <button onclick="sharePage()">Share This Page</button>
+        <button onclick="showPopup('images/page.png')">Share QR</button>
+        <button onclick="showDeveloperInfo()">About Developer</button>
+    </div>
+
+    <!-- Popup for Developer Info -->
+    <div class="popup" id="developer-popup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="hidePopup('developer-popup')">&times;</span>
+            <p>This page was developed with love by Anup Chapain. For any inquiries or custom page development, feel free to get in touch!</p>
+            <button onclick="sendDeveloperEmail()">Send me an Email</button>
+            <button onclick="window.open('https://www.instagram.com/anupcp/', '_blank')">See Insta</button>
+        </div>
+    </div>
+
+    <!-- Vcard Download Logic -->
+    <script>
+        function downloadVCard() {
+            const vCardData = `
+BEGIN:VCARD
+VERSION:3.0
+FN:Bidit Acharya
+ORG:Tyoyo Education Consultancy
+TITLE:Managing Director
+TEL;TYPE=WORK,VOICE:+9779851213933
+TEL;TYPE=WORK,VOICE:+97715911355
+EMAIL;TYPE=PREF,INTERNET:bidit@tyoyoeducation.com
+ADR;TYPE=WORK:;;Devkota Sadak;Kathmandu;;;
+URL:https://www.tyoyoeducation.com
+END:VCARD
+`;
+            const blob = new Blob([vCardData], { type: 'text/vcard' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'Bidit_Acharya.vcf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Carousel Logic
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('#carousel img');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.display = i === index ? 'block' : 'none';
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        setInterval(nextSlide, 6000); // Change slide every 6 seconds
+        showSlide(currentSlide); // Show first slide initially
+
+        // Popup Logic
+        function showPopup(imageSrc) {
+            const popup = document.getElementById('generic-popup');
+            const popupImage = document.getElementById('popup-image');
+            popupImage.src = imageSrc;
+            popup.style.display = 'flex';
+        }
+
+        function hidePopup(popupId) {
+            document.getElementById(popupId).style.display = 'none';
+        }
+
+        // Share Page Logic
+        function sharePage() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Check out Bidit Acharya\'s Page!',
+                    text: 'Explore Bidit Acharya\'s personal page and more!',
+                    url: window.location.href
+                }).then(() => {
+                    console.log('Thanks for sharing!');
+                }).catch((error) => {
+                    console.error('Error sharing:', error);
+                });
+            } else {
+                alert('Sharing is not supported on this device. Please use the QR code instead.');
+            }
+        }
+
+        // Developer Info Logic
+        function showDeveloperInfo() {
+            document.getElementById('developer-popup').style.display = 'flex';
+        }
+
+        // Send Email to Developer
+        function sendDeveloperEmail() {
+            window.location.href = "mailto:pleasedontgetconfused@gmail.com?subject=Enquiry From Bidit Acharya's page";
+        }
+    </script>
+</body>
+</html>
